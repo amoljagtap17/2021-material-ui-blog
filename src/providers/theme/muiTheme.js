@@ -37,4 +37,11 @@ export const getTheme = (theme) =>
         fontSize: '5rem',
       },
     },
+    overrides: {
+      MuiCard: {
+        root: {
+          background: theme === 'dark' ? '#1A202C' : '#fff',
+        },
+      },
+    },
   })
