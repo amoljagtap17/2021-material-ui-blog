@@ -9,28 +9,38 @@ import {
   makeStyles,
 } from '@material-ui/core'
 
-const useStyles = makeStyles((data) => {
-  console.log('data : ', data)
-  return {
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
+const useStyles = makeStyles({
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+  },
+  cardContent: {
+    flex: '1 1 auto',
+  },
+  media: {
+    height: 250,
+    objectFit: 'cover',
+    borderRadius: '0px 0px 140px 0px',
+  },
+  cardBadge: {
+    color: (item) => {
+      if (item.category === 'movies') {
+        return 'orange'
+      }
+
+      if (item.category === 'books') {
+        return 'green'
+      }
+
+      return 'red'
     },
-    cardContent: {
-      flex: '1 1 auto',
-    },
-    media: {
-      height: 250,
-      objectFit: 'cover',
-      borderRadius: '0px 0px 140px 0px',
-    },
-  }
+  },
 })
 
 export const GridItem = ({ item }) => {
-  const classes = useStyles()
+  const classes = useStyles(item)
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -38,9 +48,17 @@ export const GridItem = ({ item }) => {
         <CardMedia
           className={classes.media}
           image={'https://picsum.photos/250/150'}
-          title="Paella dish"
+          title="Card Pic"
         />
         <CardContent className={classes.cardContent}>
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="h1"
+            className={classes.cardBadge}
+          >
+            {item.category}
+          </Typography>
           <Typography gutterBottom variant="h5" component="h2">
             Blog {item.id}
           </Typography>
