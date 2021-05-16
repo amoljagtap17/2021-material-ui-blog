@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import {
   AppBar,
   Toolbar,
@@ -12,16 +13,8 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core'
-import {
-  Menu,
-  Home,
-  Person,
-  Work,
-  AssignmentTurnedIn,
-  Bookmarks,
-  Brightness5,
-  Brightness2,
-} from '@material-ui/icons'
+import { Menu, Brightness5, Brightness2 } from '@material-ui/icons'
+import { menuItems } from './menuItems'
 
 const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
@@ -37,11 +30,16 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: 240,
   },
+  active: {
+    background: 'lightgrey',
+  },
 }))
 
 export const Navbar = ({ checked, onChange }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const classes = useStyles()
+  const history = useHistory()
+  const location = useLocation()
 
   const toggleDrawer = (event) => {
     if (
@@ -88,36 +86,19 @@ export const Navbar = ({ checked, onChange }) => {
         classes={{ paper: classes.drawerPaper }}
       >
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <Home />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Person />
-            </ListItemIcon>
-            <ListItemText primary="About Me" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <AssignmentTurnedIn />
-            </ListItemIcon>
-            <ListItemText primary="Resume" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Work />
-            </ListItemIcon>
-            <ListItemText primary="Portfolio" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Bookmarks />
-            </ListItemIcon>
-            <ListItemText primary="Blogs" />
-          </ListItem>
+          {menuItems.map((item) => (
+            <ListItem
+              button
+              onClick={() => history.push(item.path)}
+              key={item.text}
+              className={
+                location.pathname === item.path ? classes.active : null
+              }
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </>
