@@ -16,24 +16,30 @@ import {
 import { Menu, Brightness5, Brightness2 } from '@material-ui/icons'
 import { menuItems } from './menuItems'
 
-const useStyles = makeStyles((theme) => ({
-  offset: theme.mixins.toolbar,
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  drawer: {
-    width: 240,
-  },
-  drawerPaper: {
-    width: 240,
-  },
-  active: {
-    background: 'lightgrey',
-  },
-}))
+const useStyles = makeStyles((theme) => {
+  console.log(theme)
+  return {
+    offset: theme.mixins.toolbar,
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    drawer: {
+      width: 240,
+    },
+    drawerPaper: {
+      width: 240,
+    },
+    active: {
+      background:
+        theme.palette.type === 'dark'
+          ? theme.palette.grey[600]
+          : theme.palette.grey[400],
+    },
+  }
+})
 
 export const Navbar = ({ checked, onChange }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
