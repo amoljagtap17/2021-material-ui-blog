@@ -36,11 +36,20 @@ export const getTheme = (theme) =>
         fontWeight: 700,
         fontSize: '5rem',
       },
+      body1: {
+        fontSize: '1.125rem',
+      },
     },
     overrides: {
       MuiCard: {
         root: {
-          background: theme === 'dark' ? '#1A202C' : '#fff',
+          backgroundColor: theme === 'dark' ? '#1A202C' : '#fff',
+        },
+      },
+      MuiAppBar: {
+        colorPrimary: {
+          color: theme === 'dark' ? '#dcdcdc' : '#2b2c38',
+          backgroundColor: theme === 'dark' ? '#2b2c38' : '#f4f7f9',
         },
       },
     },

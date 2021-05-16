@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
-import { ThemeProvider, CssBaseline, Switch } from '@material-ui/core'
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { getTheme } from 'providers/theme'
+import { Navbar } from 'components'
 
 const themes = {
   dark: 'dark',
@@ -19,11 +20,7 @@ export const AppThemeProvider = ({ children }) => {
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline />
-      <Switch
-        checked={theme === themes.dark}
-        onChange={toggleTheme}
-        disableRipple
-      />
+      <Navbar checked={theme === themes.dark} onChange={toggleTheme} />
       {children}
     </ThemeProvider>
   )
