@@ -52,5 +52,16 @@ export const getTheme = (theme) =>
           backgroundColor: theme === 'dark' ? '#2b2c38' : '#f4f7f9',
         },
       },
+      MuiDrawer: {
+        paper: {
+          color: theme === 'dark' ? '#dcdcdc' : '#2b2c38',
+          backgroundColor: theme === 'dark' ? '#2b2c38' : '#f4f7f9',
+        },
+      },
+      MuiListItemIcon: {
+        root: {
+          color: theme === 'dark' ? '#dcdcdc' : '#2b2c38',
+        },
+      },
     },
   })

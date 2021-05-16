@@ -27,14 +27,14 @@ const useStyles = makeStyles({
   cardBadge: {
     color: (item) => {
       if (item.category === 'movies') {
-        return 'orange'
+        return '#fbc658'
       }
 
       if (item.category === 'books') {
-        return 'green'
+        return '#34b5b8'
       }
 
-      return 'red'
+      return '#f33816'
     },
   },
 })
