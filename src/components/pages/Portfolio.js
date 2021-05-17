@@ -1,9 +1,11 @@
 import { Title } from 'components/ui'
 import { Form } from 'components/Form'
 
-export const Portfolio = () => (
+const Portfolio = () => (
   <>
     <Title titleText="Portfolio Page" />
     <Form />
   </>
 )
+
+export default Portfolio
