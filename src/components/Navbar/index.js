@@ -17,7 +17,6 @@ import { Menu, Brightness5, Brightness2 } from '@material-ui/icons'
 import { menuItems } from './menuItems'
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme)
   return {
     offset: theme.mixins.toolbar,
     menuButton: {
@@ -95,7 +94,10 @@ export const Navbar = ({ checked, onChange }) => {
           {menuItems.map((item) => (
             <ListItem
               button
-              onClick={() => history.push(item.path)}
+              onClick={(evt) => {
+                toggleDrawer(evt)
+                history.push(item.path)
+              }}
               key={item.text}
               className={
                 location.pathname === item.path ? classes.active : null
